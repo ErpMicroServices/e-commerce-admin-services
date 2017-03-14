@@ -1,0 +1,27 @@
+version: '3'
+services:
+  e-commerce-db:
+    image: erpmicroservices/e-commerce-database
+    container_name: e-commerce-db
+    ports:
+      - "5432:5432"
+
+  e-commerce-admin-service:
+    image: erpmicroservices/e-commerce-admin-service
+    build: .
+    container_name: admin
+    links:
+      - e-commerce-db
+    volumes:
+      - "./:/usr/src/app"
+
+  traefik:
+    image: traefik
+    container_name: traefik
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml

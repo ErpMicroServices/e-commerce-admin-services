@@ -1,0 +1,11 @@
+{
+  "generator-micro-services": {
+    "promptValues": {
+      "domain_name": "e-commerce",
+      "service_name": "admin",
+      "description": "Services to administer the e-commerce data and services.",
+      "author_name": "Jim Barrows",
+      "author_email": "Jim.Barrows@gmail.copm"
+    }
+  }
+}
