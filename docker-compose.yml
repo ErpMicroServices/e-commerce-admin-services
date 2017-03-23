@@ -1,23 +1,28 @@
 version: '3'
 services:
   e-commerce-db:
-    image: erpmicroservices/e-commerce-database
-    container_name: e-commerce-db
+    image: erpmicroservices/e-commerce-db
+    container_name: e-commerce-admin-service-db
     ports:
       - "5432:5432"
 
   e-commerce-admin-service:
     image: erpmicroservices/e-commerce-admin-service
     build: .
-    container_name: admin
+    container_name: e-commerce-admin-service
     links:
       - e-commerce-db
     volumes:
       - "./:/usr/src/app"
+    labels:
+      - "traefik.backend=e-commerce-admin-service"
+      - "traefik.frontend.rule=PathPrefixStrip:/api/e-commerce/admin"
+      - "traefik.port=80"
+      - "traefik.frontend.entryPoints=http"
 
   traefik:
     image: traefik
-    container_name: traefik
+    container_name: e-commerce-admin-services-traefik
     command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
     ports:
       - "80:80"

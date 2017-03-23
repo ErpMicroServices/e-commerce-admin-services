@@ -15,9 +15,9 @@ class Config {
                 database: {
                     host: process.env.DATABASE_HOST || 'e-commerce-db',
                     port: process.env.DATABASE_PORT || 5432,
-                    database: process.env.DATABASE_DATABSE || 'e-commerce_database',
-                    user: process.env.DATABASE_USER || 'e-commerce_database',
-                    password: process.env.DATABASE_PASSWORD || 'e-commerce_database'
+                    database: process.env.DATABASE_DATABSE || 'ems_ecommerce',
+                    user: process.env.DATABASE_USER || 'ems_ecommerce',
+                    password: process.env.DATABASE_PASSWORD || 'ems_ecommerce'
                 },
                 jwt: {
                     secret: process.env.JWT_SECRET || "this is an incredible secret.  the best secret in the world",
@@ -39,7 +39,7 @@ class Config {
     get graphql() {
       return this._config.graphql;
     }
-    
+
     get jwt() {
         return this._config.jwt;
     }
