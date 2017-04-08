@@ -6,10 +6,9 @@
     "scripts": {
         "build": "docker build --tag erpmicroservices/e-commerce-admin-service --rm .",
         "db_admin": "docker run --detach --publish 5050:5050 --name e-commerce-admin-service-pgadmin --network=ecommerceadminservices_default --link e-commerce-admin-service-db:e-commerce-db thajeztah/pgadmin4",
-        "push": "docker push erpmicroservices/e-commerce-admin-service",
+        "push": "docker push erpmicroservices/e-commerce-admin-service:latest",
         "start": "docker-compose up",
-        "test": "cucumber-js --tags @admin-service --compiler es6:babel-core/register  -r ./features ../e-commerce-features",
-        "test:one": "cucumber-js --name \"I can create a function type\" --compiler es6:babel-core/register  -r ./features ../e-commerce-features"
+        "test": "cucumber-js --tags @admin-service --compiler es6:babel-core/register  -r ./features ../e-commerce-features"
 
     },
     "repository": {

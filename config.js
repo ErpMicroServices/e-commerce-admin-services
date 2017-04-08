@@ -24,7 +24,7 @@ class Config {
                     header: process.env.JWT_HEADER || "authorization"
                 },
                 graphql: {
-                    graphiql: true
+                    graphiql: process.env.GRAPHIQL || true
                 }
             };
         } else {
