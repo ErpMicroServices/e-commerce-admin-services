@@ -1,10 +1,28 @@
 version: '3'
 services:
   e-commerce-db:
-    image: erpmicroservices/e-commerce-db
+    image: erpmicroservices/e-commerce-db:latest
     container_name: e-commerce-admin-service-db
     ports:
       - "5432:5432"
+
+  party-db:
+    image: erpmicroservices/party-db:latest
+    container_name: e-commerce-admin-service-party-db
+    ports:
+      - "5433:5432"
+
+  e-commerce-party-party-service:
+    image: erpmicroservices/party-party-service
+    build: .
+    container_name: e-commerce-party-party-service
+    links:
+      - party-db
+    labels:
+      - "traefik.backend=e-commerce-party-party-service"
+      - "traefik.frontend.rule=PathPrefixStrip:/api/party/party"
+      - "traefik.port=80"
+      - "traefik.frontend.entryPoints=http"
 
   e-commerce-admin-service:
     image: erpmicroservices/e-commerce-admin-service
